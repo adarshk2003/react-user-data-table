@@ -1,98 +1,70 @@
-# Minimalist React User Directory (Axios API Table)
+# Full-Stack MVC & REST API User Directory Application
 
-A modern, highly polished, minimalistic React web application built with **Vite** and **Axios** that presents user data in an interactive table with sorting, real-time search, filters, pagination, profile view modals, and simulated CRUD operations.
+A production-grade full-stack web application following strict **MVC (Model-View-Controller)** pattern and **REST API Best Practices**.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![React](https://img.shields.io/badge/React-18.3-blue)
-![Vite](https://img.shields.io/badge/Vite-6.0-646CFF)
-![Axios](https://img.shields.io/badge/Axios-1.7-purple)
+- **Frontend (`client/`)**: React 18, Vite, Axios, and Minimalist CSS Design System structured with pure Views, Custom Hook Controller, Domain Models, and REST HTTP Service.
+- **Backend (`server/`)**: Node.js & Express REST API Server implementing standard HTTP methods (`GET`, `POST`, `PUT`, `DELETE`), RESTful HTTP status codes (`200 OK`, `201 Created`, `204 No Content`, `400`, `404`, `500`), and JSON resource formatting.
 
 ---
 
-## ✨ Features
-
-- **⚡ Minimalistic Aesthetic**: Clean, modern dark/light mode UI built with CSS custom design tokens, smooth micro-interactions, and custom Google Fonts (*Plus Jakarta Sans* & *Inter*).
-- **📡 Axios API Layer**: Custom Axios instance with interceptors, request execution timer, unified error handling, and API source switcher (`JSONPlaceholder` / `DummyJSON`).
-- **📊 Minimalist KPI Stats**: Live summary badges showing total users, active status ratios, department count, and locations.
-- **🔍 Instant Search & Multi-Filters**: Search across name, username, email, company, and city. Filter by department and active status.
-- **↕️ Sortable Columns**: Click table headers to sort by Name, Email, Department, Location, or Status (Ascending/Descending).
-- **📝 Slide-Over Modals & Form Validation**:
-  - View full user details in a slide-over modal.
-  - Create and edit user profiles via Axios `POST` and `PUT` requests.
-  - Delete users via Axios `DELETE` calls.
-- **📄 Export to CSV**: One-click export of currently filtered user data to a `.csv` file.
-- **📱 Responsive Layout**: Seamless design across desktop, tablet, and mobile displays.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/react-user-data-table.git
-   cd react-user-data-table
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start local development server:**
-   ```bash
-   npm run dev
-   ```
-   Open your browser at `http://localhost:3000`
-
-4. **Build for production:**
-   ```bash
-   npm run build
-   ```
-
----
-
-## 📂 Project Structure
+## 🏛️ Full-Stack MVC Architecture
 
 ```text
-├── src/
-│   ├── assets/          # Static assets
-│   ├── components/      # Modular UI components
-│   │   ├── Header.jsx           # App navbar & theme toggle
-│   │   ├── UserStats.jsx        # Minimalist KPI metrics
-│   │   ├── TableControls.jsx    # Search bar & filter dropdowns
-│   │   ├── UserTable.jsx        # Data table & action menu
-│   │   ├── SkeletonLoader.jsx   # Shimmer loading state
-│   │   ├── UserDetailModal.jsx  # Profile detail modal
-│   │   ├── UserFormModal.jsx    # Add / Edit user form
-│   │   ├── Pagination.jsx       # Pagination controls
-│   │   └── ToastNotification.jsx# Floating API alerts
-│   ├── services/
-│   │   └── api.js       # Axios client setup & interceptors
-│   ├── App.jsx          # Main application & state manager
-│   ├── main.jsx         # React DOM entrypoint
-│   └── index.css        # Minimalist CSS design system tokens
-├── index.html           # HTML template with Google Fonts
-├── vite.config.js       # Vite configuration
-└── package.json         # Project dependencies & scripts
+├── client/                      # REACT FRONTEND (UI MVC)
+│   ├── src/
+│   │   ├── models/              # MODEL: Domain Entity, Validation & DTO Mappers
+│   │   │   └── UserModel.js
+│   │   ├── controllers/         # CONTROLLER: Hook managing business logic & state
+│   │   │   └── useUserController.js
+│   │   ├── views/               # VIEW: Presentational UI Components
+│   │   │   ├── components/      # TableView, StatsView, ControlsView, Modals, Pagination
+│   │   │   └── UserDirectoryView.jsx # Primary View
+│   │   ├── services/            # SERVICE: Axios REST API Client & HTTP Interceptors
+│   │   │   ├── httpClient.js    # Base Axios setup & HTTP headers
+│   │   │   └── userRestService.js# Resource endpoints (GET, POST, PUT, DELETE)
+│   │   ├── App.jsx
+│   │   └── index.css            # Minimalist CSS tokens & themes
+│   └── package.json
+│
+└── server/                      # NODE.JS EXPRESS BACKEND (REST API MVC)
+    ├── controllers/             # CONTROLLER: Request/Response & HTTP status codes
+    │   └── userController.js
+    ├── models/                  # MODEL: Data layer & resource operations
+    │   └── userModel.js
+    ├── routes/                  # ROUTER: RESTful Endpoint mapping (/api/users)
+    │   └── userRoutes.js
+    ├── server.js                # Express app entrypoint & CORS middleware
+    └── package.json
 ```
 
 ---
 
-## 🛠️ Built With
+## 🛰️ REST API Endpoints
 
-- **[React](https://react.dev/)** — UI Library
-- **[Vite](https://vitejs.dev/)** — Next Generation Frontend Tooling
-- **[Axios](https://axios-http.com/)** — Promise-based HTTP Client
-- **[Lucide React](https://lucide.dev/)** — Minimalist Icon Library
+| HTTP Verb | Endpoint | Action | Success Status |
+| :--- | :--- | :--- | :--- |
+| **`GET`** | `/api/users` | Fetch list of users | `200 OK` |
+| **`GET`** | `/api/users/:id` | Fetch single user by ID | `200 OK` |
+| **`POST`** | `/api/users` | Create new user resource | `201 Created` |
+| **`PUT`** | `/api/users/:id` | Replace / Update existing user | `200 OK` |
+| **`DELETE`** | `/api/users/:id` | Delete user resource | `200 OK` / `204 No Content` |
 
 ---
 
-## 📄 License
+## 🚀 Running the Project
 
-This project is licensed under the MIT License.
+### 1. Install Dependencies
+```bash
+npm run install:all
+```
+
+### 2. Start Express REST API Server (Port 5000)
+```bash
+npm run dev:server
+```
+
+### 3. Start React Frontend Client (Port 3000)
+```bash
+npm run dev:client
+```
+Open **`http://localhost:3000`** in your browser.
